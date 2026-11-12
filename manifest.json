@@ -10,30 +10,11 @@
   "theme_color": "#0f172a",
   "icons": [
     {
-      "src": "./icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "./icons/icon-512.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/1160/1160358.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ],
-  "categories": [
-    "productivity",
-    "utilities",
-    "security"
-  ],
-  "screenshots": [
-    {
-      "src": "./icons/screenshot-narrow.png",
-      "sizes": "540x720",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Tampilan Utama Mylist"
-    }
   ]
 }
+
