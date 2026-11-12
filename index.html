@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mylist - Android Offline Vault</title>
     
-    <!-- PWA Manifest Link -->
-    <link rel="manifest" href="manifest.json">
+    <!-- PWA Manifest Link & Meta Tags -->
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#0f172a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/1160/1160358.png">
     
     <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -511,6 +512,15 @@
     <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
     <script>
+        // Registrasi Service Worker Otomatis untuk PWABuilder
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('ServiceWorker registered! Scope:', reg.scope))
+                    .catch(err => console.log('ServiceWorker registration failed:', err));
+            });
+        }
+
         const DB_NAME = 'Mylist_Android_Secure_Vault';
         const DB_VERSION = 2;
         const STORE_NAME = 'profiles';
@@ -1027,7 +1037,6 @@
             document.getElementById('removePhotoBtn').classList.add('hidden');
         }
 
-        // Cropper Logic Integration
         function handleImageUpload(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -1186,7 +1195,7 @@
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             const isError = type === 'error';
-            toast.className = `pointer-events-auto flex items-center gap-2 px-3.5 py-2.5 ${isError ? 'bg-rose-600' : 'bg-slate-900'} text-white text-xs font-bold rounded-2xl shadow-xl transform transition-all duration-300 opacity-0 translate-y-2`;
+            toast.className = `pointer-events-auto flex items-center gap-2 px-3.5 py-2.5 ${isError ? 'bg-rose-600' : 'bg-slate-900'} * text-white text-xs font-bold rounded-2xl shadow-xl transform transition-all duration-300 opacity-0 translate-y-2`;
             toast.innerHTML = `<i data-lucide="${isError ? 'alert-circle' : 'check-circle'}" class="w-3.5 h-3.5 text-blue-400"></i> ${escapeHtml(message)}`;
             container.appendChild(toast);
             lucide.createIcons();
